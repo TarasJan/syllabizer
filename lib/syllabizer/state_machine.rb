@@ -14,6 +14,8 @@ module Syllabizer
     def process_states(switches)
       switches.each do |switch|
         n_state = next_state(switch)
+        puts "#{@state} -> #{n_state}" 
+        puts switch
         @state = n_state
       end
     end
@@ -25,7 +27,7 @@ module Syllabizer
       case @state
       when :ø
         case symbol_switch
-        when %i[ø c]
+        when %i[ø c], %i[ø sd]
           :c
         when %i[ø v], %i[ø e]
           increase_accumulator
@@ -35,11 +37,11 @@ module Syllabizer
         end
       when :c
         case symbol_switch
-        when %i[c e]
+        when %i[c e], %i[sd e]
           :e
-        when %i[c c]
+        when %i[c c], %i[c sd], %i[sd sd], %i[sd c]
           :cg
-        when %i[c v]
+        when %i[c v], %i[sd v]
           increase_accumulator
           :v
         else
@@ -47,10 +49,10 @@ module Syllabizer
         end
       when :cg
         case symbol_switch
-        when %i[c v]
+        when %i[c v], %i[sd v]
           increase_accumulator
           :v
-        when %i[c e]
+        when %i[c e], %i[sd e]
           increase_accumulator
           :v
         else
@@ -58,21 +60,36 @@ module Syllabizer
         end
       when :v
         case symbol_switch
-        when %i[v c]
+        when %i[e c], %i[v c], %i[ø c], %i[e sd], %i[v sd], %i[ø sd]
           :c
         else
           :v
         end
       when :e
         case symbol_switch
+        when %i[e sd]
+          :sd
         when %i[e c]
           increase_accumulator
           :c
-        when %i[e v]
+        when %i[e v], %i[e e]
           increase_accumulator
           :v
         else
           :e
+        end
+      when :sd
+        case symbol_switch
+        when %i[sd c], %i[sd c]
+          :cg
+        when %i[sd e]
+          increase_accumulator
+          :e
+        when %i[sd v]
+          increase_accumulator
+          :v
+        else
+          :sd
         end
       end
     end

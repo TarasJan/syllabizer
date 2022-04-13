@@ -41,8 +41,10 @@ module Syllabizer
         :e
       when /[aiouy]/
         :v
-      when /[qwrtpsfghjklzxcvbnm]/
+      when /[qwrtpfghjklzxcvbnm]/
         :c
+      when /[sd]/
+        :sd
       else
         :ø
       end
