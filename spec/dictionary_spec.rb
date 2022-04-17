@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Syllabizer do
   subject(:syllabe_count) { Syllabizer.count_syllables(word) }
 
-  pronunciation_words = open("spec/fixtures/cmudict.dict").readlines.take(300).map do |l|
+  pronunciation_words = open("spec/fixtures/cmudict.dict").readlines.map do |l|
     line = l.split(" ")
     word, *syls = line 
     [word, syls.count {|s| s =~ /[0-9]/}]

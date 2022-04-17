@@ -1,8 +1,6 @@
 # Syllabizer
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/syllabizer`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Syllabizer is a simple gem for estimating number of syllables of an English words. Its tested efficiency is about 75% percent.
 
 ## Installation
 
@@ -16,7 +14,14 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+irb(main):004:0> Syllabizer.count_syllables('beer')
+=> 1
+irb(main):005:0> Syllabizer.count_syllables('candle')
+=> 2
+irb(main):006:0> Syllabizer.count_syllables('carjacking')
+=> 3
+```
 
 ## Development
 
@@ -26,4 +31,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/syllabizer.
+Bug reports and pull requests are welcome on GitHub at https://github.com/TarasJan/syllabizer.

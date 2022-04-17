@@ -37,14 +37,14 @@ module Syllabizer
 
     def char_to_sym(char)
       case char
+      when /s/
+        :s
       when /e/
         :e
       when /[aiouy]/
         :v
-      when /[qwrtpfghjklzxcvbnm]/
+      when /[qwdrtpfghjklzxcvbnm]/
         :c
-      when /[sd]/
-        :sd
       else
         :ø
       end
